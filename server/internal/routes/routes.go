@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/CVWO/sample-go-app/internal/handlers/users"
+	"github.com/ZweZeya/CVWO/client/internal/handlers/users"
 	"github.com/go-chi/chi/v5"
 )
 

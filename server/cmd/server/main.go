@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/CVWO/sample-go-app/internal/router"
+	"github.com/ZweZeya/CVWO/client/internal/router"
 )
 
 func main() {
