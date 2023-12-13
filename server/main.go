@@ -17,6 +17,6 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	fmt.Print("Listening on port 8000 at http://localhost:8000!")
+	fmt.Print("Listening on port 8000 at http://localhost:8000")
 	log.Fatalln(http.ListenAndServe(":8000", r))
 }
