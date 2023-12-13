@@ -1,6 +1,7 @@
 package users
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/ZweZeya/CVWO/client/internal/api"
@@ -45,7 +46,7 @@ func Test(w http.ResponseWriter, r *http.Request) (*api.Response, error) {
 	_, err := database.ConnectDB()
 
 	if err != nil {
-		panic("failed to connect database")
+		log.Fatal("failed to connect database")
 	}
 
 	return &api.Response{
