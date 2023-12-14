@@ -6,5 +6,5 @@ import (
 )
 
 func SetUpTagsRoutes(r chi.Router) {
-	r.Group(tags.GetTagRoutes())
+	r.Group(tags.GetTagsRoutes())
 }

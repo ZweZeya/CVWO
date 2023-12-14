@@ -10,10 +10,6 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func init() {
-
-}
-
 func main() {
 	r := router.Setup()
 	err := godotenv.Load(".env")
@@ -23,6 +19,7 @@ func main() {
 	}
 
 	database.ConnectDB()
+	// database.MigrateDB()
 
 	fmt.Print("Listening on port 8000 at http://localhost:8000\n")
 	log.Fatalln(http.ListenAndServe(":8000", r))

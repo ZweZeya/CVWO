@@ -3,6 +3,8 @@ package router
 import (
 	"github.com/ZweZeya/CVWO/client/internal/middlewares"
 	"github.com/ZweZeya/CVWO/client/internal/router/auth"
+	"github.com/ZweZeya/CVWO/client/internal/router/comments"
+	"github.com/ZweZeya/CVWO/client/internal/router/posts"
 	"github.com/ZweZeya/CVWO/client/internal/router/tags"
 	"github.com/ZweZeya/CVWO/client/internal/router/users"
 	"github.com/go-chi/chi/v5"
@@ -30,4 +32,6 @@ func setUpRoutes(r chi.Router) {
 	auth.SetupUpAuthRoutes(r)
 	tags.SetUpTagsRoutes(r)
 	users.SetUpUsersRoutes(r)
+	posts.SetUpPostsRoutes(r)
+	comments.SetUpCommentsRoutes(r)
 }

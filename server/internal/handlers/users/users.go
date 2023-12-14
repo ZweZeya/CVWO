@@ -10,5 +10,5 @@ import (
 func GetCurrentUserHandler(w http.ResponseWriter, r *http.Request) {
 	user := r.Context().Value("user").(*models.User)
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(user)
+	json.NewEncoder(w).Encode(&user)
 }

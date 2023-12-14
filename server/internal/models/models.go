@@ -28,7 +28,7 @@ type Post struct {
 
 type Comment struct {
 	gorm.Model
-	content     string
+	Content     string
 	UserId      int
 	PostId      int
 	VoteCountId int

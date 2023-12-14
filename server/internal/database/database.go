@@ -1,6 +1,7 @@
 package database
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -18,8 +19,13 @@ func ConnectDB() {
 	if err != nil {
 		log.Fatal("failed to connect database")
 	}
+	fmt.Print("database connection established")
 }
 
-func MigrateDB() error {
-	return DB.AutoMigrate(&models.User{}, &models.Tag{}, &models.VoteCount{}, &models.Post{}, &models.Comment{})
+func MigrateDB() {
+	err := DB.AutoMigrate(&models.User{}, &models.Tag{}, &models.VoteCount{}, &models.Post{}, &models.Comment{})
+	if err != nil {
+		log.Fatal("failed to migrate database")
+	}
+	fmt.Print("database succcessfully migrated")
 }

@@ -19,8 +19,7 @@ func AuthHandler(next http.Handler) http.Handler {
 
 		accessTokenCookie, err := r.Cookie("access_token")
 		if err == http.ErrNoCookie {
-			w.WriteHeader(http.StatusUnauthorized)
-			w.Write([]byte("unauthorised user"))
+			http.Error(w, "unauthorised user", http.StatusUnauthorized)
 			return
 		}
 
@@ -31,8 +30,7 @@ func AuthHandler(next http.Handler) http.Handler {
 		})
 
 		if err == http.ErrNoCookie {
-			w.WriteHeader(http.StatusUnauthorized)
-			w.Write([]byte("unauthorised user"))
+			http.Error(w, "unauthorised user", http.StatusUnauthorized)
 			return
 		}
 

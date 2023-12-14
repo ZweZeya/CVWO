@@ -33,7 +33,7 @@ func GetUserByEmail(email string) *models.User {
 	return user
 }
 
-func CreateNewUser(user models.User) {
+func CreateUser(user *models.User) {
 	result := database.DB.Create(&user)
 	if result.Error != nil {
 		log.Fatal("cannot create user")

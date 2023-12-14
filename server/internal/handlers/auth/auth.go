@@ -39,7 +39,7 @@ func generateAccessToken(user *models.User) string {
 	return token
 }
 
-func CreateNewUserHandler(w http.ResponseWriter, r *http.Request) {
+func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 	var reqBody struct {
 		Username  string
 		Password  string
@@ -51,17 +51,16 @@ func CreateNewUserHandler(w http.ResponseWriter, r *http.Request) {
 	err := json.NewDecoder(r.Body).Decode(&reqBody)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
 	}
 
 	if users.GetUserByUsername(reqBody.Username) != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("username is already taken"))
+		http.Error(w, "username is already taken", http.StatusBadRequest)
 		return
 	}
 
 	if users.GetUserByEmail(reqBody.Email) != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("email is already taken"))
+		http.Error(w, "email is already taken", http.StatusBadRequest)
 		return
 	}
 
@@ -79,7 +78,7 @@ func CreateNewUserHandler(w http.ResponseWriter, r *http.Request) {
 		// ImageUrl:       "",
 	}
 
-	users.CreateNewUser(newUser)
+	users.CreateUser(&newUser)
 
 	w.Write([]byte("new user successfully registered"))
 }
@@ -93,18 +92,17 @@ func LoginUserHandler(w http.ResponseWriter, r *http.Request) {
 	err := json.NewDecoder(r.Body).Decode(&reqBody)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
 	}
 
 	user := users.GetUserByUsername(reqBody.Username)
 	if user == nil {
-		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte("user not found"))
+		http.Error(w, "user not found", http.StatusBadRequest)
 		return
 	}
 
 	if checkPasswordHash(reqBody.Password, user.HashedPassword) == false {
-		w.WriteHeader(http.StatusUnauthorized)
-		w.Write([]byte("incorrect password"))
+		http.Error(w, "incorrect password", http.StatusUnauthorized)
 		return
 	}
 
