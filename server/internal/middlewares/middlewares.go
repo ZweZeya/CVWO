@@ -2,25 +2,44 @@ package middlewares
 
 import (
 	"context"
-	"log"
+	"encoding/json"
 	"net/http"
+	"os"
+	"strings"
 
-	"github.com/ZweZeya/CVWO/client/internal/database"
+	"github.com/ZweZeya/CVWO/client/internal/models"
+	"github.com/golang-jwt/jwt"
 )
 
-func DBHandler(next http.Handler) http.Handler {
+func AuthHandler(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		db, err := database.ConnectDB()
-		if err != nil {
-			log.Fatal("failed to connect database")
+		if strings.HasPrefix(r.URL.Path, "/auth") {
+			next.ServeHTTP(w, r)
 		}
-		ctx := context.WithValue(r.Context(), "db", db)
+
+		accessTokenCookie, err := r.Cookie("access_token")
+		if err == http.ErrNoCookie {
+			w.WriteHeader(http.StatusUnauthorized)
+			w.Write([]byte("unauthorised user"))
+			return
+		}
+
+		accessToken := accessTokenCookie.Value
+
+		token, err := jwt.ParseWithClaims(accessToken, &jwt.StandardClaims{}, func(token *jwt.Token) (interface{}, error) {
+			return []byte(os.Getenv("JWT_SECRET")), nil
+		})
+
+		if err == http.ErrNoCookie {
+			w.WriteHeader(http.StatusUnauthorized)
+			w.Write([]byte("unauthorised user"))
+			return
+		}
+
+		claims := token.Claims.(*jwt.StandardClaims)
+		var user models.User
+		json.Unmarshal([]byte(claims.Issuer), &user)
+		ctx := context.WithValue(r.Context(), "user", &user)
 		next.ServeHTTP(w, r.WithContext(ctx))
 	})
 }
-
-// func AuthHandler(next http.Handler) http.Handler {
-// 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-
-// 	})
-// }

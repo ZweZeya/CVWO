@@ -5,15 +5,14 @@ import (
 	"net/http"
 
 	"github.com/ZweZeya/CVWO/client/internal/dataaccess/tags"
-	"gorm.io/gorm"
 )
 
-func SeedTagsHandler(db *gorm.DB) {
-	tags.SeedTags(db)
+func SeedTagsHandler() {
+	tags.SeedTags()
 }
 
 func GetAllTagsHandler(w http.ResponseWriter, r *http.Request) {
-	result := tags.GetAllTags(r.Context().Value("db").(*gorm.DB))
+	result := tags.GetAllTags()
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(result)
 }

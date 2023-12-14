@@ -1,10 +1,10 @@
 package users
 
 import (
-	"github.com/ZweZeya/CVWO/client/internal/routes/tags"
+	"github.com/ZweZeya/CVWO/client/internal/routes/users"
 	"github.com/go-chi/chi/v5"
 )
 
 func SetUpUsersRoutes(r chi.Router) {
-	r.Group(tags.GetTagRoutes())
+	r.Group(users.GetUsersRoutes())
 }

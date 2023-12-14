@@ -3,25 +3,28 @@ package tags
 import (
 	"log"
 
+	"github.com/ZweZeya/CVWO/client/internal/database"
 	"github.com/ZweZeya/CVWO/client/internal/models"
-	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
 
-func SeedTags(db *gorm.DB) {
+func SeedTags() {
 	tags := []models.Tag{
 		{Name: "Education"},
 		{Name: "Finance"},
 		{Name: "Technology"},
 	}
-	db.Clauses(clause.OnConflict{DoNothing: true}).Create(tags)
+	result := database.DB.Clauses(clause.OnConflict{DoNothing: true}).Create(&tags)
+	if result.Error != nil {
+		log.Fatal("cannot seed tags")
+	}
 }
 
-func GetAllTags(db *gorm.DB) []models.Tag {
+func GetAllTags() []models.Tag {
 	var tags []models.Tag
-	result := db.Find(&tags)
+	result := database.DB.Find(&tags)
 	if result.Error != nil {
-		log.Fatalf("cannot retrieve tags")
+		log.Fatal("cannot retrieve tags")
 	}
 	return tags
 }

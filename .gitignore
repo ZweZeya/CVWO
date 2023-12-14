@@ -1,5 +1,4 @@
 ######### client #########
-
 # dependencies
 /client/node_modules
 /client/.pnp
@@ -34,3 +33,6 @@
 # Editor
 /server/.idea/*
 /server/.vscode/*
+
+######### misc #########
+data.txt

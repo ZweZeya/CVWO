@@ -9,15 +9,17 @@ import (
 	"gorm.io/gorm"
 )
 
-func ConnectDB() (*gorm.DB, error) {
-	dsn := os.Getenv("DSN")
-	return gorm.Open(postgres.Open(dsn), &gorm.Config{})
-}
+var DB *gorm.DB
 
-func MigrateDB() error {
-	db, err := ConnectDB()
+func ConnectDB() {
+	dsn := os.Getenv("DSN")
+	var err error
+	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("failed to connect database")
 	}
-	return db.AutoMigrate(&models.User{}, &models.Tag{}, &models.VoteCount{}, &models.Post{}, &models.Comment{})
+}
+
+func MigrateDB() error {
+	return DB.AutoMigrate(&models.User{}, &models.Tag{}, &models.VoteCount{}, &models.Post{}, &models.Comment{})
 }

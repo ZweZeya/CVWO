@@ -7,7 +7,11 @@ require (
 	github.com/pkg/errors v0.9.1
 )
 
+require github.com/golang-jwt/jwt/v5 v5.2.0 // indirect
+
 require (
+	github.com/go-chi/cors v1.2.1
+	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20231201235250-de7065d80cb9 // indirect
 	github.com/jackc/pgx/v5 v5.5.1 // indirect

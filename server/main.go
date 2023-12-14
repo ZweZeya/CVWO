@@ -5,9 +5,14 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/ZweZeya/CVWO/client/internal/database"
 	"github.com/ZweZeya/CVWO/client/internal/router"
 	"github.com/joho/godotenv"
 )
+
+func init() {
+
+}
 
 func main() {
 	r := router.Setup()
@@ -17,6 +22,8 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	fmt.Print("Listening on port 8000 at http://localhost:8000")
+	database.ConnectDB()
+
+	fmt.Print("Listening on port 8000 at http://localhost:8000\n")
 	log.Fatalln(http.ListenAndServe(":8000", r))
 }

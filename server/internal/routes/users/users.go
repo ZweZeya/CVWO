@@ -11,7 +11,7 @@ func GetUsersRoutes() func(r chi.Router) {
 
 		})
 		r.Route("/user", func(r chi.Router) {
-			r.Post("/register", users.CreateNewUserHandler)
+			r.Get("/", users.GetCurrentUserHandler)
 		})
 	}
 }
