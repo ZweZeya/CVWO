@@ -15,6 +15,7 @@ func AuthHandler(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if strings.HasPrefix(r.URL.Path, "/auth") {
 			next.ServeHTTP(w, r)
+			return
 		}
 
 		accessTokenCookie, err := r.Cookie("access_token")
