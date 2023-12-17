@@ -1,13 +1,23 @@
 import { RootState } from "../state/store";
-import { useSelector } from "react-redux";
+import { useUser } from "../hooks/useUser";
+import { login } from "../state/user/userSlice";
+import { useSelector, useDispatch } from "react-redux";
 import { Navigate, useLocation, Outlet } from "react-router-dom";
-import React from "react";
+import React, { useEffect } from "react";
 
 const ProtectedRoute = () => {
-    const user = useSelector((state: RootState) => state.user);
+    const userState = useSelector((state: RootState) => state.user);
     const location = useLocation();
+    const dispatch = useDispatch();
+    const { data } = useUser();
 
-    return user.isAuthenticated ? <Outlet /> : <Navigate to="login" state={{ from: location }} replace />;
+    useEffect(() => {
+        if (data) {
+            dispatch(login(data));
+        }
+    }, [data]);
+
+    return userState.user ? <Outlet /> : <Navigate to="/login" state={{ from: location }} replace />;
 };
 
 export default ProtectedRoute;

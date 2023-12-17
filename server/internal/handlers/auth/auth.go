@@ -126,5 +126,5 @@ func LogoutUserHandler(w http.ResponseWriter, r *http.Request) {
 		HttpOnly: true,
 	}
 	http.SetCookie(w, &expiredCookie)
-	w.Write([]byte("successful login"))
+	w.Write([]byte("successful logout"))
 }
