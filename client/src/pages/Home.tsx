@@ -1,5 +1,5 @@
 import { instance } from "../config/axios.config";
-import Page from "../layouts/Page";
+import Page from "../layouts/Page/Page";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 

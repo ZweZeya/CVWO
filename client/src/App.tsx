@@ -1,5 +1,5 @@
 import Home from "./pages/Home";
-import LoginPage from "./pages/Login";
+import LoginPage from "./pages/Login/Login";
 import AnonymousRoute from "./auth/AnonymousRoute";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import React from "react";

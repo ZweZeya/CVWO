@@ -1,0 +1,67 @@
+.container {
+    height: 80%;
+    width: 80%;
+    background-color: white;
+}
+
+.gridContainer {
+    height: 100%;
+    width: 100%;
+}
+
+.gridItem {
+    @extend .gridContainer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.leftGridItem {
+    @extend .gridItem;
+    background-color: #007ea7;
+}
+
+.rightGridItem  {
+    @extend .gridItem;
+    background-color: #ffffff;
+}
+
+.formTitle {
+    color: #007ea7;
+}
+
+.textAnimation {
+    font-size: 1.5rem;
+    display: inline-block;
+    color: #ffffff;
+}
+
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.forgotPasswordText {
+    font-size: 0.7rem;
+    margin: 0;
+    text-align: right;
+    color: #495057;
+    cursor: pointer;
+}
+
+.forgotPasswordText:hover {
+    text-decoration: underline;
+}
+
+.registerText {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: #495057;
+    cursor: pointer;
+}
+
+.registerText:hover {
+    text-decoration: underline;
+}
