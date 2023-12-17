@@ -1,12 +1,12 @@
-import { useUser } from "../hooks/useUser";
+import { useCurrentUser } from "../hooks";
 import { Navigate, useLocation, Outlet } from "react-router-dom";
 import React from "react";
 
 const AnonymousRoute = () => {
+    const { isAuthenticated } = useCurrentUser();
     const location = useLocation();
-    const { data } = useUser();
 
-    return data ? <Navigate to="/" state={{ from: location }} replace /> : <Outlet />;
+    return isAuthenticated ? <Navigate to="/" state={{ from: location }} replace /> : <Outlet />;
 };
 
 export default AnonymousRoute;

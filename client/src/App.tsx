@@ -1,7 +1,7 @@
 import Home from "./pages/Home";
 import LoginPage from "./pages/Login";
-import ProtectedRoute from "./auth/ProtectedRoute";
 import AnonymousRoute from "./auth/AnonymousRoute";
+import ProtectedRoute from "./auth/ProtectedRoute";
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";

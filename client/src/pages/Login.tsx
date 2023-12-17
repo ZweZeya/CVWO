@@ -1,8 +1,11 @@
 import { instance } from "../config/axios.config";
-// import { Navigate } from "react-router-dom";
+import Page from "../layouts/Page";
+import { useNavigate } from "react-router-dom";
 import React from "react";
 
 const LoginPage: React.FC = () => {
+    const navigate = useNavigate();
+
     const userData = {
         password: "john_doe",
         username: "JohnDoe123",
@@ -10,14 +13,13 @@ const LoginPage: React.FC = () => {
 
     const handleLogin = async () => {
         await instance.post("/auth/login", userData);
-        // return <Navigate to="/" replace />;
-        window.location.reload();
+        return navigate("/");
     };
 
     return (
-        <div>
+        <Page>
             <button onClick={handleLogin}>Login</button>
-        </div>
+        </Page>
     );
 };
 
