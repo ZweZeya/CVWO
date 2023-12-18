@@ -3,9 +3,9 @@ import { instance } from "../../config/axios.config";
 import AuthPage from "../../layouts/AuthPage/AuthPage";
 import Button from "../../components/Button/Button";
 import TextField from "../../components/TextField/TextField";
-import { Box } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import { string, object, ref } from "yup";
 
@@ -21,7 +21,10 @@ const registerValidationSchema = object({
 });
 
 const RegisterPage: React.FC = () => {
+    const [isSubmitting, setSubmitting] = useState<boolean>(false);
+
     const navigate = useNavigate();
+
     const formik = useFormik({
         initialValues: {
             firstName: "",
@@ -33,6 +36,7 @@ const RegisterPage: React.FC = () => {
         },
         validationSchema: registerValidationSchema,
         onSubmit: async (value) => {
+            setSubmitting(true);
             const { firstName, lastName, email, username, password } = value;
             await instance.post("/auth/register", {
                 firstName: firstName,
@@ -114,7 +118,9 @@ const RegisterPage: React.FC = () => {
                         helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
                     />
                 </Box>
-                <Button type="submit">Register</Button>
+                <Button type="submit">
+                    {isSubmitting ? <CircularProgress size={25} sx={{ color: "#ffffff" }} /> : "Register"}
+                </Button>
                 <Link to="/login" className={styles.loginText}>
                     Already registered? Login here
                 </Link>

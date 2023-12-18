@@ -3,8 +3,9 @@ import { instance } from "../../config/axios.config";
 import AuthPage from "../../layouts/AuthPage/AuthPage";
 import Button from "../../components/Button/Button";
 import TextField from "../../components/TextField/TextField";
+import CircularProgress from "@mui/material/CircularProgress";
 import { useNavigate, Link } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -14,7 +15,10 @@ const loginValidationSchema = yup.object({
 });
 
 const LoginPage: React.FC = () => {
+    const [isSubmitting, setSubmitting] = useState<boolean>(false);
+
     const navigate = useNavigate();
+
     const formik = useFormik({
         initialValues: {
             username: "",
@@ -22,6 +26,7 @@ const LoginPage: React.FC = () => {
         },
         validationSchema: loginValidationSchema,
         onSubmit: async (value) => {
+            setSubmitting(true);
             await instance.post("/auth/login", value);
             return navigate("/");
         },
@@ -52,7 +57,9 @@ const LoginPage: React.FC = () => {
                     helperText={formik.touched.password && formik.errors.password}
                 />
                 <p className={styles.forgotPasswordText}>Forgot password</p>
-                <Button type="submit">Login</Button>
+                <Button type="submit">
+                    {isSubmitting ? <CircularProgress size={25} sx={{ color: "#ffffff" }} /> : "Login"}
+                </Button>
                 <Link to="/register" className={styles.registerText}>
                     New to BanterBay? Register here
                 </Link>

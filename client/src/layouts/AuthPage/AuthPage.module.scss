@@ -19,7 +19,9 @@
 
 .leftGridItem {
     @extend .gridItem;
-    background-color: #007ea7;
+    // background-color: #007ea7;
+    background: rgb(0,52,89);
+    background: linear-gradient(0deg, rgba(0,52,89,1) 0%, rgba(0,126,167,1) 60%, rgba(0,168,232,1) 100%);
 }
 
 .rightGridItem  {
