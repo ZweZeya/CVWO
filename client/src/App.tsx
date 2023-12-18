@@ -1,5 +1,6 @@
 import Home from "./pages/Home";
 import LoginPage from "./pages/Login/Login";
+import RegisterPage from "./pages/Register/Register";
 import AnonymousRoute from "./auth/AnonymousRoute";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import React from "react";
@@ -23,6 +24,7 @@ const App: React.FC = () => {
                     <Routes>
                         <Route element={<AnonymousRoute />}>
                             <Route path="/login" element={<LoginPage />} />
+                            <Route path="/register" element={<RegisterPage />} />
                         </Route>
                         <Route element={<ProtectedRoute />}>
                             <Route path="/" element={<Home />} />

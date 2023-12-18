@@ -1,7 +1,15 @@
+$input-gap: 0.7rem;
+
 .formContainer {
     display: flex;
     flex-direction: column;
-    gap: 0.7rem;
+    gap: $input-gap;
+}
+
+.inputHozizontalContainer {
+    display: flex;
+    align-items: center;
+    gap: $input-gap;
 }
 
 .forgotPasswordText {
@@ -16,14 +24,13 @@
     text-decoration: underline;
 }
 
-.registerText {
+.loginText {
     margin-top: 2rem;
     font-size: 0.8rem;
     color: #495057;
     cursor: pointer;
-    text-decoration: none;
 }
 
-.registerText:hover {
+.loginText:hover {
     text-decoration: underline;
 }

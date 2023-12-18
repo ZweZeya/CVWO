@@ -1,0 +1,38 @@
+.container {
+    height: 80%;
+    width: 80%;
+    background-color: white;
+}
+
+.gridContainer {
+    height: 100%;
+    width: 100%;
+}
+
+.gridItem {
+    @extend .gridContainer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.leftGridItem {
+    @extend .gridItem;
+    background-color: #007ea7;
+}
+
+.rightGridItem  {
+    @extend .gridItem;
+    background-color: #ffffff;
+}
+
+.formTitle {
+    color: #007ea7;
+}
+
+.textAnimation {
+    font-size: 1.5rem;
+    display: inline-block;
+    color: #ffffff;
+}
