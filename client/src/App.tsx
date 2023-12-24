@@ -1,4 +1,4 @@
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import LoginPage from "./pages/Login/Login";
 import RegisterPage from "./pages/Register/Register";
 import AnonymousRoute from "./auth/AnonymousRoute";

@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #f8f9fa;
+    // background-color: #ffffff;
+    padding: 0.2rem 1.3rem;
+    border-bottom: 2px solid #007ea7;
+}
+
+.navItems {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+    gap: 1.5rem;
+}
+
+.searchContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #e9ecef;
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.7rem;
+}
+
+.iconButton {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+
+.searchButton {
+    @extend.iconButton;
+    margin-left: auto;
+}
+
+.accountButton {
+    @extend.iconButton;
+}
+
+.hoverEffect {
+    cursor: pointer;
+    color: #007ea7;
+}
+
+.searchButton:hover {
+    @extend.hoverEffect;
+}
+
+.accountIcon:hover {
+    @extend.hoverEffect;
+}

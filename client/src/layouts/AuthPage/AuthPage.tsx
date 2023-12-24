@@ -12,7 +12,7 @@ const AuthPage = ({ title, children }: { title: string; children: React.ReactNod
                 <Grid container className={styles.gridContainer}>
                     <Grid item xs={6} className={styles.gridItem}>
                         <Box className={styles.leftGridItem}>
-                            <img src="../../../images/sunset-.png" alt="logo" width="300" />
+                            <img src="../../../images/sunset-.png" alt="sunset" width="300" />
                             <TypeAnimation
                                 sequence={[
                                     "Welcome to BanterBay",
@@ -31,7 +31,7 @@ const AuthPage = ({ title, children }: { title: string; children: React.ReactNod
                     </Grid>
                     <Grid item xs={6} className={styles.gridItem}>
                         <Box className={styles.rightGridItem}>
-                            <Logo style={{ marginBottom: "2rem" }} />
+                            <Logo style={{ marginBottom: "2rem" }} scale={1} />
                             <h2 className={styles.formTitle}>{title}</h2>
                             {children}
                         </Box>
