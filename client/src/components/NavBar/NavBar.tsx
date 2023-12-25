@@ -1,11 +1,11 @@
 import styles from "./NavBar.module.scss";
 import Logo from "../Logo/Logo";
 import { instance } from "../../config/axios.config";
-import { Box, InputBase, Popover } from "@mui/material";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { Box, InputBase } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 
 const Search = () => {
     return (
@@ -18,19 +18,8 @@ const Search = () => {
     );
 };
 
-const AccountButton = () => {
+const LogoutButton = () => {
     const navigate = useNavigate();
-    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const open = Boolean(anchorEl);
-    const id = open ? "simple-popover" : undefined;
 
     const handleLogout = async () => {
         await instance.get("/auth/logout");
@@ -39,21 +28,9 @@ const AccountButton = () => {
 
     return (
         <React.Fragment>
-            <button className={styles.accountButton} onClick={handleClick}>
-                <AccountCircleOutlinedIcon className={styles.accountIcon} fontSize="large" />
+            <button className={styles.logoutButton} onClick={handleLogout}>
+                <LogoutIcon className={styles.logoutIcon} fontSize="medium" />
             </button>
-            <Popover
-                id={id}
-                open={open}
-                anchorEl={anchorEl}
-                onClose={handleClose}
-                anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                }}
-            >
-                <button onClick={handleLogout}>Logout</button>
-            </Popover>
         </React.Fragment>
     );
 };
@@ -64,7 +41,7 @@ const NavBar = () => {
             <Logo scale={0.7} />
             <Box className={styles.navItems}>
                 <Search />
-                <AccountButton />
+                <LogoutButton />
             </Box>
         </Box>
     );

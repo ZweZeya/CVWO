@@ -38,3 +38,9 @@ func CreatePostHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("new post successfully created"))
 }
+
+func GetAllPostsHandler(w http.ResponseWriter, r *http.Request) {
+	result := posts.GetAllPosts()
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(result)
+}

@@ -8,7 +8,7 @@ import (
 func GetPostsRoutes() func(r chi.Router) {
 	return func(r chi.Router) {
 		r.Route("/posts", func(r chi.Router) {
-
+			r.Get("/", posts.GetAllPostsHandler)
 		})
 		r.Route("/post", func(r chi.Router) {
 			r.Post("/", posts.CreatePostHandler)

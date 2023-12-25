@@ -1,0 +1,16 @@
+.body {
+    margin: 1rem 4rem;
+}
+
+.createPostContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #e9ecef;
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.7rem;
+}
+
+.createPostInput {
+    width: 100%;
+}
