@@ -8,6 +8,7 @@ const PostCard = ({ post }: { post: Post }) => {
         <Box>
             {post.Title}
             {/* {post.Content} */}
+            <Box></Box>
         </Box>
     );
 };
