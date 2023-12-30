@@ -1,7 +1,7 @@
 import styles from "./ViewPage.module.scss";
 import Page from "../Page/Page";
 import NavBar from "../../components/NavBar/NavBar";
-import PostCard from "../../components/Post/Post";
+import PostCard from "../../components/PostCard/PostCard";
 import { usePosts } from "../../hooks";
 import { Box, Grid, InputBase } from "@mui/material";
 import CreateIcon from "@mui/icons-material/Create";
@@ -23,7 +23,7 @@ const ViewPage = () => {
                             <InputBase placeholder="Create Post" className={styles.createPostInput} />
                             <CreateIcon />
                         </Box>
-                        {postElements}
+                        <Box className={styles.posts}>{postElements}</Box>
                     </Grid>
                     <Grid item xs={3}></Grid>
                 </Grid>

@@ -1,3 +1,5 @@
+@import "../../styles/index.scss";
+
 .container {
     display: flex;
     flex-direction: row;
@@ -5,7 +7,7 @@
     background-color: #f8f9fa;
     // background-color: #ffffff;
     padding: 0.2rem 1.3rem;
-    border-bottom: 2px solid #007ea7;
+    border-bottom: 2px solid $primary;
 }
 
 .navItems {
@@ -42,7 +44,7 @@
 
 .hoverEffect {
     cursor: pointer;
-    color: #007ea7;
+    color: $primary;
 }
 
 .searchButton:hover {

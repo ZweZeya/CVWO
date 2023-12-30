@@ -23,7 +23,7 @@ func ConnectDB() {
 }
 
 func MigrateDB() {
-	err := DB.AutoMigrate(&models.User{}, &models.Tag{}, &models.VoteCount{}, &models.Post{}, &models.Comment{})
+	err := DB.AutoMigrate(&models.User{}, &models.Tag{}, &models.VoteCount{}, &models.Post{}, &models.Comment{}, &models.Votes{})
 	if err != nil {
 		log.Fatal("failed to migrate database")
 	}

@@ -14,3 +14,9 @@
 .createPostInput {
     width: 100%;
 }
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

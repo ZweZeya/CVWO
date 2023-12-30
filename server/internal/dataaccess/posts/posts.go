@@ -51,3 +51,7 @@ func GetAllPosts() []PostResponse {
 	}
 	return posts
 }
+
+// SELECT posts.id, tags.name, users.username, COUNT(comments.id) FROM "posts" JOIN "tags" ON posts.tag_id = tags.id JOIN "users" ON posts.user_id = users.id JOIN "vote_counts" ON posts.vote_count_id = vote_counts.id LEFT JOIN comments ON comments.post_id = posts.id GROUP BY posts.id, tags.name, users.username;
+
+// SELECT posts.id, tags.name, users.username FROM "posts" JOIN "tags" ON posts.tag_id = tags.id JOIN "users" ON posts.user_id = users.id JOIN "vote_counts" ON posts.vote_count_id = vote_counts.id LEFT JOIN comments ON comments.post_id = posts.id GROUP BY posts.id, tags.name, users.username;

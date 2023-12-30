@@ -14,6 +14,7 @@ type User struct {
 	ImageUrl       string
 	Posts          []Post    `gorm:"foreignKey:UserId"`
 	Comments       []Comment `gorm:"foreignKey:UserId"`
+	Votes          []Votes   `gorm:"foreignKey:UserId"`
 }
 
 type Post struct {
@@ -24,6 +25,7 @@ type Post struct {
 	TagId       int
 	VoteCountId int
 	Comments    []Comment `gorm:"foreignKey:PostId"`
+	Votes       []Votes   `gorm:"foreignKey:PostId"`
 }
 
 type Comment struct {
@@ -47,4 +49,11 @@ type VoteCount struct {
 	Comment   Comment `gorm:"foreignKey:VoteCountId"`
 	UpVotes   int     `gorm:"default:0"`
 	DownVotes int     `gorm:"default:0"`
+}
+
+type Votes struct {
+	gorm.Model
+	PostId     int
+	UserId     int
+	IsDownVote bool `gorm:"default:false"`
 }

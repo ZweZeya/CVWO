@@ -1,0 +1,21 @@
+@import "../../styles/index.scss";
+
+.container {
+    background-color: #f8f9fa;
+}
+
+.stats {
+    @extend.rFlex;
+}
+
+.voteCountContainer {
+    @extend.rFlex;
+    gap: 0.5rem;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.voteCount {
+    @extend.rFlex;
+    gap: 0.3rem;
+}
