@@ -20,9 +20,14 @@ func SeedTags() {
 	}
 }
 
-func GetAllTags() []models.Tag {
-	var tags []models.Tag
-	result := database.DB.Find(&tags)
+type TagResponse struct {
+	ID   int
+	Name string
+}
+
+func GetAllTags() []TagResponse {
+	var tags []TagResponse
+	result := database.DB.Table("tags").Select("id", "name").Scan(&tags)
 	if result.Error != nil {
 		log.Fatal("cannot retrieve tags")
 	}

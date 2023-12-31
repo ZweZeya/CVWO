@@ -1,21 +1,31 @@
 @import "../../styles/index.scss";
 
 .container {
+    @extend.cFlex;
     background-color: #f8f9fa;
+    padding: 0.5rem 1rem;
+}
+
+.title {
+    margin: 0;
+    text-align: left;
+}
+
+.user {
+    @extend.rFlex;
+}
+
+.content {
+    margin: 0;
+    text-align: left;
 }
 
 .stats {
     @extend.rFlex;
+    gap: 1rem;
 }
 
-.voteCountContainer {
-    @extend.rFlex;
-    gap: 0.5rem;
-    border: 1px solid black;
-    border-radius: 5px;
-}
-
-.voteCount {
+.statItem {
     @extend.rFlex;
     gap: 0.3rem;
 }

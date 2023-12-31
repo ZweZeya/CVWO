@@ -19,10 +19,11 @@ func CreatePost(post *models.Post) error {
 }
 
 type PostResponse struct {
-	ID             string
+	ID             int
 	Title          string
 	Content        string
 	TagName        string
+	TagId          string
 	UserId         int
 	Username       string
 	UpVotesCount   int
@@ -40,6 +41,7 @@ func GetAllPosts(user *models.User) []PostResponse {
 			posts.title, 
 			posts.user_id,
 			tags.name as tag_name, 
+			tags.id as tag_id, 
 			users.username, 
 			vote_counts.up_votes as up_votes_count, 
 			vote_counts.down_votes as down_votes_count,
@@ -52,7 +54,17 @@ func GetAllPosts(user *models.User) []PostResponse {
 		JOIN vote_counts ON posts.vote_count_id = vote_counts.id 
 		LEFT JOIN comments ON comments.post_id = posts.id 
 
-		GROUP BY posts.id, posts.content, posts.title, posts.user_id, tags.name, users.username, vote_counts.up_votes, vote_counts.down_votes, user_vote_value
+		GROUP BY 
+			posts.id, 
+			posts.content, 
+			posts.title, 
+			posts.user_id, 
+			tags.name,
+			tags.id,
+			users.username, 
+			vote_counts.up_votes, 
+			vote_counts.down_votes, 
+			user_vote_value
 	`, user.ID).Scan(&posts)
 	if result.Error != nil {
 		log.Fatal("cannot get posts")
