@@ -53,7 +53,7 @@ type VoteCount struct {
 
 type Votes struct {
 	gorm.Model
-	PostId     int
-	UserId     int
-	IsDownVote bool `gorm:"default:false"`
+	PostId int
+	UserId int
+	Value  int `gorm:"default:0"`
 }

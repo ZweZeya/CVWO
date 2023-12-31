@@ -40,7 +40,8 @@ func CreatePostHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetAllPostsHandler(w http.ResponseWriter, r *http.Request) {
-	result := posts.GetAllPosts()
+	user := r.Context().Value("user").(*models.User)
+	result := posts.GetAllPosts(user)
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(result)
 }
