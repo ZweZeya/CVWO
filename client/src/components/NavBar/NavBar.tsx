@@ -4,7 +4,8 @@ import { instance } from "../../config/axios.config";
 import { Box, InputBase } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SearchIcon from "@mui/icons-material/Search";
-import { useNavigate } from "react-router-dom";
+// eslint-disable-next-line import/named
+import { useNavigate, NavigateFunction } from "react-router-dom";
 import React from "react";
 
 const Search = () => {
@@ -18,9 +19,7 @@ const Search = () => {
     );
 };
 
-const LogoutButton = () => {
-    const navigate = useNavigate();
-
+const LogoutButton = ({ navigate }: { navigate: NavigateFunction }) => {
     const handleLogout = async () => {
         await instance.get("/auth/logout");
         setTimeout(() => navigate("/login"), 2000);
@@ -36,12 +35,16 @@ const LogoutButton = () => {
 };
 
 const NavBar = () => {
+    const navigate = useNavigate();
+
     return (
         <Box className={styles.container}>
-            <Logo scale={0.7} />
+            <div className={styles.logo} onClick={() => navigate("/")}>
+                <Logo scale={0.7} />
+            </div>
             <Box className={styles.navItems}>
                 <Search />
-                <LogoutButton />
+                <LogoutButton navigate={navigate} />
             </Box>
         </Box>
     );

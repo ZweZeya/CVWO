@@ -10,6 +10,10 @@
     border-bottom: 2px solid $primary;
 }
 
+.logo {
+    @extend.cursor-pointer
+}
+
 .navItems {
     display: flex;
     flex-direction: row;

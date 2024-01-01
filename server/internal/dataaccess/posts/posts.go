@@ -2,6 +2,7 @@ package posts
 
 import (
 	"log"
+	"time"
 
 	"github.com/ZweZeya/CVWO/client/internal/dataaccess/voteCounts"
 	"github.com/ZweZeya/CVWO/client/internal/database"
@@ -22,6 +23,7 @@ type PostResponse struct {
 	ID             int
 	Title          string
 	Content        string
+	CreatedAt      time.Time
 	TagName        string
 	TagId          string
 	UserId         int
@@ -40,6 +42,7 @@ func GetAllPosts(user *models.User) []PostResponse {
 			posts.content, 
 			posts.title, 
 			posts.user_id,
+			posts.created_at,
 			tags.name as tag_name, 
 			tags.id as tag_id, 
 			users.username, 

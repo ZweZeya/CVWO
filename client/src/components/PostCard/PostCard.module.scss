@@ -4,20 +4,50 @@
     @extend.cFlex;
     background-color: #f8f9fa;
     padding: 0.5rem 1rem;
+    gap: 1rem;
 }
 
 .title {
     margin: 0;
     text-align: left;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.midBar {
+    @extend.rFlex;
+}
+
+.tag {
+    margin-left: auto;
+    padding: 3px;
+    font-size: 12px;
+    border-radius: 0.5rem;
+    font-weight: 600;
 }
 
 .user {
     @extend.rFlex;
+    text-align: left;
+}
+
+.userDetail {
+    @extend.cFlex;
+}
+
+.username {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.createdAt {
+    // text-align: left;
 }
 
 .content {
     margin: 0;
     text-align: left;
+    font-size: 15px;
 }
 
 .stats {
