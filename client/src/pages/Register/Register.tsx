@@ -1,8 +1,8 @@
 import styles from "./Register.module.scss";
 import { instance } from "../../config/axios.config";
 import AuthPage from "../../layouts/AuthPage/AuthPage";
-import Button from "../../components/Button/Button";
-import TextField from "../../components/TextField/TextField";
+import CustomButton from "../../components/CustomButton/CustomButton";
+import CustomTextField from "../../components/CustomTextField/CustomeTextField";
 import { Box, CircularProgress } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
 import React, { useState } from "react";
@@ -53,7 +53,7 @@ const RegisterPage: React.FC = () => {
         <AuthPage title="Register">
             <form onSubmit={formik.handleSubmit} className={styles.formContainer}>
                 <Box className={styles.inputHozizontalContainer}>
-                    <TextField
+                    <CustomTextField
                         id="firstName"
                         name="firstName"
                         label="First Name"
@@ -63,7 +63,7 @@ const RegisterPage: React.FC = () => {
                         error={formik.touched.firstName && Boolean(formik.errors.firstName)}
                         helperText={formik.touched.firstName && formik.errors.firstName}
                     />
-                    <TextField
+                    <CustomTextField
                         id="lastName"
                         name="lastName"
                         label="Last Name"
@@ -74,7 +74,7 @@ const RegisterPage: React.FC = () => {
                         helperText={formik.touched.lastName && formik.errors.lastName}
                     />
                 </Box>
-                <TextField
+                <CustomTextField
                     id="email"
                     name="email"
                     label="Email"
@@ -84,7 +84,7 @@ const RegisterPage: React.FC = () => {
                     error={formik.touched.email && Boolean(formik.errors.email)}
                     helperText={formik.touched.email && formik.errors.email}
                 />
-                <TextField
+                <CustomTextField
                     id="username"
                     name="username"
                     label="Username"
@@ -95,7 +95,7 @@ const RegisterPage: React.FC = () => {
                     helperText={formik.touched.username && formik.errors.username}
                 />
                 <Box className={styles.inputHozizontalContainer}>
-                    <TextField
+                    <CustomTextField
                         type="password"
                         id="password"
                         name="password"
@@ -106,7 +106,7 @@ const RegisterPage: React.FC = () => {
                         error={formik.touched.password && Boolean(formik.errors.password)}
                         helperText={formik.touched.password && formik.errors.password}
                     />
-                    <TextField
+                    <CustomTextField
                         type="confirmPassword"
                         id="confirmPassword"
                         name="confirmPassword"
@@ -118,9 +118,9 @@ const RegisterPage: React.FC = () => {
                         helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
                     />
                 </Box>
-                <Button type="submit">
+                <CustomButton type="submit">
                     {isSubmitting ? <CircularProgress size={25} sx={{ color: "#ffffff" }} /> : "Register"}
-                </Button>
+                </CustomButton>
                 <Link to="/login" className={styles.loginText}>
                     Already registered? Login here
                 </Link>

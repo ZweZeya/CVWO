@@ -1,8 +1,8 @@
 import styles from "./Login.module.scss";
 import { instance } from "../../config/axios.config";
 import AuthPage from "../../layouts/AuthPage/AuthPage";
-import Button from "../../components/Button/Button";
-import TextField from "../../components/TextField/TextField";
+import CustomButton from "../../components/CustomButton/CustomButton";
+import CustomTextField from "../../components/CustomTextField/CustomeTextField";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useNavigate, Link } from "react-router-dom";
 import React, { useState } from "react";
@@ -35,7 +35,7 @@ const LoginPage: React.FC = () => {
     return (
         <AuthPage title="Account Login">
             <form onSubmit={formik.handleSubmit} className={styles.formContainer}>
-                <TextField
+                <CustomTextField
                     id="username"
                     name="username"
                     label="Username"
@@ -45,7 +45,7 @@ const LoginPage: React.FC = () => {
                     error={formik.touched.username && Boolean(formik.errors.username)}
                     helperText={formik.touched.username && formik.errors.username}
                 />
-                <TextField
+                <CustomTextField
                     type="password"
                     id="password"
                     name="password"
@@ -57,9 +57,9 @@ const LoginPage: React.FC = () => {
                     helperText={formik.touched.password && formik.errors.password}
                 />
                 <p className={styles.forgotPasswordText}>Forgot password</p>
-                <Button type="submit">
+                <CustomButton type="submit">
                     {isSubmitting ? <CircularProgress size={25} sx={{ color: "#ffffff" }} /> : "Login"}
-                </Button>
+                </CustomButton>
                 <Link to="/register" className={styles.registerText}>
                     New to BanterBay? Register here
                 </Link>

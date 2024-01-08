@@ -2,7 +2,7 @@ import styles from "./ViewPage.module.scss";
 import Page from "../Page/Page";
 import NavBar from "../../components/NavBar/NavBar";
 import PostCard from "../../components/PostCard/PostCard";
-import { usePosts, useTags } from "../../hooks";
+import { usePosts } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 import { Box, Grid, InputBase } from "@mui/material";
 import CreateIcon from "@mui/icons-material/Create";
@@ -12,8 +12,8 @@ const ViewPage = () => {
     const navigate = useNavigate();
     const { data: posts } = usePosts();
     const postElements = posts?.map((post) => <PostCard key={post.ID} post={post} />);
-    const tags = useTags();
-    console.log(tags);
+    // const tags = useTags();
+    // console.log(tags);
 
     return (
         <Page>

@@ -2,6 +2,7 @@
 
 .container {
     @extend.cFlex;
+    @extend.cursor-pointer;
     background-color: #f8f9fa;
     padding: 0.5rem 1rem;
     gap: 1rem;

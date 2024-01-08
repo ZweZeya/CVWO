@@ -5,6 +5,7 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import { useNavigate } from "react-router-dom";
 import React from "react";
 
 const formatDate = (date: Date): string => {
@@ -55,8 +56,10 @@ const TagBox = ({ tagId, tagName, className }: { tagId: number; tagName: string;
 };
 
 const PostCard = ({ post }: { post: Post }) => {
+    const navigate = useNavigate();
+
     return (
-        <Box className={styles.container} onClick={() => console.log(post)}>
+        <Box className={styles.container} onClick={() => navigate(`/post/${post.ID}`)}>
             <p className={styles.title}>{post.Title}</p>
             <Box className={styles.midBar}>
                 <Box className={styles.user}>

@@ -1,0 +1,20 @@
+@import "../../styles/index.scss";
+
+.formContainer {
+    @extend.rFlex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.form {
+    @extend.cFlex;
+    gap: 1rem;
+    width: 60%;
+}
+
+.formTitle {
+    margin: 0;
+    font-weight: 600;
+    font-size: 28px;
+    color: $primary;
+}

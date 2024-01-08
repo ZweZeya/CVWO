@@ -1,8 +1,8 @@
 import Home from "./pages/Home/Home";
+import CreatePostPage from "./pages/Create/Create";
 import LoginPage from "./pages/Login/Login";
 import RegisterPage from "./pages/Register/Register";
-import AnonymousRoute from "./auth/AnonymousRoute";
-import ProtectedRoute from "./auth/ProtectedRoute";
+import PostPage from "./pages/Post/Post";
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -22,13 +22,11 @@ const App: React.FC = () => {
             <ThemeProvider theme={theme}>
                 <BrowserRouter>
                     <Routes>
-                        <Route element={<AnonymousRoute />}>
-                            <Route path="/login" element={<LoginPage />} />
-                            <Route path="/register" element={<RegisterPage />} />
-                        </Route>
-                        <Route element={<ProtectedRoute />}>
-                            <Route path="/" element={<Home />} />
-                        </Route>
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/register" element={<RegisterPage />} />
+                        <Route path="/" element={<Home />} />
+                        <Route path="/create" element={<CreatePostPage />} />
+                        <Route path="/post/:id" element={<PostPage />} />
                     </Routes>
                 </BrowserRouter>
             </ThemeProvider>
