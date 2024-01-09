@@ -1,8 +1,8 @@
 import styles from "./Register.module.scss";
 import { instance } from "../../config/axios.config";
 import AuthPage from "../../layouts/AuthPage/AuthPage";
-import CustomButton from "../../components/CustomButton/CustomButton";
-import CustomTextField from "../../components/CustomTextField/CustomeTextField";
+import CustomButton from "../../components/Custom/CustomButton/CustomButton";
+import CustomTextField from "../../components/Custom/CustomTextField/CustomeTextField";
 import { Box, CircularProgress } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
 import React, { useState } from "react";

@@ -1,8 +1,8 @@
 import styles from "./Create.module.scss";
 import NavBar from "../../components/NavBar/NavBar";
 import Page from "../../layouts/Page/Page";
-import CustomTextField from "../../components/CustomTextField/CustomeTextField";
-import CustomButton from "../../components/CustomButton/CustomButton";
+import CustomTextField from "../../components/Custom/CustomTextField/CustomeTextField";
+import CustomButton from "../../components/Custom/CustomButton/CustomButton";
 import { useTags } from "../../hooks";
 import { instance } from "../../config/axios.config";
 import { Box, Select, MenuItem, InputLabel, FormControl } from "@mui/material";

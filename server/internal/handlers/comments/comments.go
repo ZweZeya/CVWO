@@ -43,10 +43,11 @@ func CreateCommentHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetCommentsByPostIdHandler(w http.ResponseWriter, r *http.Request) {
+	user := r.Context().Value("user").(*models.User)
 	postId := chi.URLParam(r, "postId")
-	i, _ := strconv.Atoi(postId)
 
-	comments := comments.GetCommentsByPostId(i)
+	i, _ := strconv.Atoi(postId)
+	comments := comments.GetCommentsByPostId(user, i)
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(comments)

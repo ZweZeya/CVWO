@@ -5,7 +5,6 @@ import { Box } from "@mui/material";
 import React from "react";
 
 const PostView = ({ post }: { post: Post }) => {
-    console.log(post);
     return (
         <Box>
             <Box className={styles.postContainer}>
