@@ -8,7 +8,7 @@ import (
 func GetCommentsRoutes() func(r chi.Router) {
 	return func(r chi.Router) {
 		r.Route("/comments", func(r chi.Router) {
-
+			r.Get("/{postId}", comments.GetCommentsByPostIdHandler)
 		})
 		r.Route("/comment", func(r chi.Router) {
 			r.Post("/", comments.CreateCommentHandler)

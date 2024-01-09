@@ -51,8 +51,10 @@ func GetAllPostsHandler(w http.ResponseWriter, r *http.Request) {
 func GetPostByIdHandler(w http.ResponseWriter, r *http.Request) {
 	user := r.Context().Value("user").(*models.User)
 	postId := chi.URLParam(r, "id")
+
 	i, _ := strconv.Atoi(postId)
 	result := posts.GetPostById(user, i)
+
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(result)
 }

@@ -3,9 +3,11 @@ package comments
 import (
 	"encoding/json"
 	"net/http"
+	"strconv"
 
 	"github.com/ZweZeya/CVWO/client/internal/dataaccess/comments"
 	"github.com/ZweZeya/CVWO/client/internal/models"
+	"github.com/go-chi/chi/v5"
 )
 
 func CreateCommentHandler(w http.ResponseWriter, r *http.Request) {
@@ -38,4 +40,14 @@ func CreateCommentHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("new comment successfully created"))
+}
+
+func GetCommentsByPostIdHandler(w http.ResponseWriter, r *http.Request) {
+	postId := chi.URLParam(r, "postId")
+	i, _ := strconv.Atoi(postId)
+
+	comments := comments.GetCommentsByPostId(i)
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(comments)
 }

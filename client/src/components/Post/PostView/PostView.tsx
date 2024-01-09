@@ -7,10 +7,13 @@ import React from "react";
 const PostView = ({ post }: { post: Post }) => {
     console.log(post);
     return (
-        <Box className={styles.container}>
-            <p className={styles.title}>{post.Title}</p>
-            <PostUser post={post} />
-            <p className={styles.content}>{post.Content}</p>
+        <Box>
+            <Box className={styles.postContainer}>
+                <p className={styles.title}>{post.Title}</p>
+                <PostUser post={post} />
+                <p className={styles.content}>{post.Content}</p>
+            </Box>
+            <Box></Box>
         </Box>
     );
 };
