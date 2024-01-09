@@ -1,4 +1,4 @@
-@import "../../styles/index.scss";
+@import "../../../styles/index.scss";
 
 .container {
     @extend.cFlex;
@@ -25,24 +25,6 @@
     font-size: 12px;
     border-radius: 0.5rem;
     font-weight: 600;
-}
-
-.user {
-    @extend.rFlex;
-    text-align: left;
-}
-
-.userDetail {
-    @extend.cFlex;
-}
-
-.username {
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.createdAt {
-    // text-align: left;
 }
 
 .content {

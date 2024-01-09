@@ -1,0 +1,20 @@
+@import "../../../styles/index.scss";
+
+.container {
+    @extend.cFlex;
+    background-color: #f8f9fa;
+    padding: 0.5rem 1rem;
+    gap: 1rem;
+}
+
+.title {
+    text-align: left;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0.5rem;
+}
+
+.content {
+    text-align: left;
+    margin: 0 0.5rem;
+}

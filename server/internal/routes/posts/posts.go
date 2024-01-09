@@ -11,6 +11,7 @@ func GetPostsRoutes() func(r chi.Router) {
 			r.Get("/", posts.GetAllPostsHandler)
 		})
 		r.Route("/post", func(r chi.Router) {
+			r.Get("/{id}", posts.GetPostByIdHandler)
 			r.Post("/", posts.CreatePostHandler)
 		})
 	}

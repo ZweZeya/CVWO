@@ -74,3 +74,46 @@ func GetAllPosts(user *models.User) []PostResponse {
 	}
 	return posts
 }
+
+func GetPostById(user *models.User, postId int) PostResponse {
+	var post PostResponse
+	result := database.DB.Raw(`
+		SELECT 
+			posts.id, 
+			posts.content, 
+			posts.title, 
+			posts.user_id,
+			posts.created_at,
+			tags.name as tag_name, 
+			tags.id as tag_id, 
+			users.username, 
+			vote_counts.up_votes as up_votes_count, 
+			vote_counts.down_votes as down_votes_count,
+			COUNT(comments.id) as comment_count,
+			(SELECT votes.user_id FROM "votes" where votes.post_id = posts.id AND votes.user_id = ?) AS user_vote_value
+		FROM posts
+
+		JOIN tags ON posts.tag_id = tags.id 
+		JOIN users ON posts.user_id = users.id 
+		JOIN vote_counts ON posts.vote_count_id = vote_counts.id 
+		LEFT JOIN comments ON comments.post_id = posts.id 
+		
+		WHERE posts.id = ?
+
+		GROUP BY 
+			posts.id, 
+			posts.content, 
+			posts.title, 
+			posts.user_id, 
+			tags.name,
+			tags.id,
+			users.username, 
+			vote_counts.up_votes, 
+			vote_counts.down_votes, 
+			user_vote_value
+	`, user.ID, postId).Scan(&post)
+	if result.Error != nil {
+		log.Fatal("cannot get posts")
+	}
+	return post
+}
