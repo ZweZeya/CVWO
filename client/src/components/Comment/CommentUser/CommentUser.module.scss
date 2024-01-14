@@ -1,0 +1,22 @@
+@import "../../../styles/index.scss";
+
+.user {
+    @extend.rFlex;
+    text-align: left;
+}
+
+.userDetail {
+    @extend.cFlex;
+}
+
+.username {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.createdAt {
+    font-size: 12px;
+    font-weight: 300;
+    margin: 0;
+}

@@ -20,6 +20,7 @@ func CreateComment(comment *models.Comment) error {
 }
 
 type CommentResponse struct {
+	ID            int
 	Content       string
 	UserId        int
 	Username      string
@@ -33,7 +34,6 @@ type CommentResponse struct {
 
 func GetCommentsByPostId(user *models.User, postId int) []CommentResponse {
 	var comments []CommentResponse
-	// result := database.DB.Where("post_id = ?", postId).Find(&comments)
 	result := database.DB.Raw(`
 	SELECT 
 		comments.id, 

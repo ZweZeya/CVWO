@@ -7,6 +7,6 @@ const commentsFetcher = async (url: string): Promise<Comment[]> => {
     return res.data;
 };
 
-export const usePosts = (postId: number) => {
+export const useComments = (postId: number) => {
     return useSWR(`/comments/${postId}`, commentsFetcher);
 };

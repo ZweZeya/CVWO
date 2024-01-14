@@ -1,0 +1,11 @@
+@import "../../../styles/index.scss";
+
+.container {
+    @extend.cFlex;
+    align-items: start;
+}
+
+.content {
+    font-size: 14px;
+    margin: 0 0.4rem;
+}
