@@ -1,0 +1,11 @@
+@import "../../../styles/index.scss";
+
+.stats {
+    @extend.rFlex;
+    gap: 1rem;
+}
+
+.statItem {
+    @extend.rFlex;
+    gap: 0.3rem;
+}

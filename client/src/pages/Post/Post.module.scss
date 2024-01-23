@@ -1,0 +1,11 @@
+@import "../../styles/index.scss";
+
+.body {
+    margin: 1rem 4rem;
+}
+
+.commentsContainer {
+    @extend.cFlex;
+    gap: 1rem;
+    margin-top: 1rem;
+}

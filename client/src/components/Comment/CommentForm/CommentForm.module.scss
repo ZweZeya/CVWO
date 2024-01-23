@@ -1,0 +1,7 @@
+@import "../../../styles/index.scss";
+
+.formContainer {
+    @extend.cFlex;
+    gap: 0.7rem;
+    margin-top: 1rem;
+}

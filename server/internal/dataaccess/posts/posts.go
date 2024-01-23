@@ -48,7 +48,7 @@ func GetAllPosts(user *models.User) []PostResponse {
 			users.username, 
 			vote_counts.up_votes as up_votes_count, 
 			vote_counts.down_votes as down_votes_count,
-			COUNT(comments.id) as comment_count,
+			COUNT(comments.id) as comments_count,
 			(SELECT votes.user_id FROM "votes" where votes.post_id = posts.id AND votes.user_id = ?) AS user_vote_value
 		FROM posts
 
@@ -89,7 +89,7 @@ func GetPostById(user *models.User, postId int) PostResponse {
 			users.username, 
 			vote_counts.up_votes as up_votes_count, 
 			vote_counts.down_votes as down_votes_count,
-			COUNT(comments.id) as comment_count,
+			COUNT(comments.id) as comments_count,
 			(SELECT votes.user_id FROM "votes" where votes.post_id = posts.id AND votes.user_id = ?) AS user_vote_value
 		FROM posts
 
