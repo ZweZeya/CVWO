@@ -1,34 +1,24 @@
 import styles from "./ViewPage.module.scss";
 import Page from "../Page/Page";
 import NavBar from "../../components/NavBar/NavBar";
-import PostCard from "../../components/Post/PostCard/PostCard";
-import { usePosts } from "../../hooks";
-import { useNavigate } from "react-router-dom";
-import { Box, Grid, InputBase } from "@mui/material";
-import CreateIcon from "@mui/icons-material/Create";
-import React from "react";
+import { Box, Grid } from "@mui/material";
+import React, { ReactNode } from "react";
 
-const ViewPage = () => {
-    const navigate = useNavigate();
-    const { data: posts } = usePosts();
-    const postElements = posts?.map((post) => <PostCard key={post.ID} post={post} />);
-    // const tags = useTags();
-    // console.log(tags);
-
+const ViewPage = ({ left, children, right }: { left?: ReactNode; children: ReactNode; right?: ReactNode }) => {
     return (
         <Page>
             <NavBar />
             <Box className={styles.body}>
                 <Grid container spacing={2}>
-                    <Grid item xs={2}></Grid>
-                    <Grid item xs={7}>
-                        <Box className={styles.createPostContainer} onClick={() => navigate("/create")}>
-                            <InputBase placeholder="Create Post" className={styles.createPostInput} />
-                            <CreateIcon />
-                        </Box>
-                        <Box className={styles.posts}>{postElements}</Box>
+                    <Grid item xs={2}>
+                        {left}
                     </Grid>
-                    <Grid item xs={3}></Grid>
+                    <Grid item xs={7}>
+                        {children}
+                    </Grid>
+                    <Grid item xs={3}>
+                        {right}
+                    </Grid>
                 </Grid>
             </Box>
         </Page>
