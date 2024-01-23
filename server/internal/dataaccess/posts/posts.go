@@ -68,6 +68,8 @@ func GetAllPosts(user *models.User) []PostResponse {
 			vote_counts.up_votes, 
 			vote_counts.down_votes, 
 			user_vote_value
+		
+		ORDER BY posts.created_at DESC
 	`, user.ID).Scan(&posts)
 	if result.Error != nil {
 		log.Fatal("cannot get posts")
