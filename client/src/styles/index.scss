@@ -14,3 +14,10 @@ $primary: #007ea7;
 .cursor-pointer {
     cursor: pointer;
 }
+
+.errorBox {
+    background-color: pink;
+    padding: 0.5rem;
+    border-radius: 5px;
+    color: red;
+}

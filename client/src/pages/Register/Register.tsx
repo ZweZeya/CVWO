@@ -8,6 +8,7 @@ import { useNavigate, Link } from "react-router-dom";
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import { string, object, ref } from "yup";
+import { AxiosError } from "axios";
 
 const registerValidationSchema = object({
     firstName: string().required("First name is required"),
@@ -22,6 +23,7 @@ const registerValidationSchema = object({
 
 const RegisterPage: React.FC = () => {
     const [isSubmitting, setSubmitting] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string | null>();
 
     const navigate = useNavigate();
 
@@ -36,22 +38,31 @@ const RegisterPage: React.FC = () => {
         },
         validationSchema: registerValidationSchema,
         onSubmit: async (value) => {
-            setSubmitting(true);
-            const { firstName, lastName, email, username, password } = value;
-            await instance.post("/auth/register", {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                username: username,
-                password: password,
-            });
-            return navigate("/login");
+            try {
+                setErrorMessage(null);
+                setSubmitting(true);
+                const { firstName, lastName, email, username, password } = value;
+                await instance.post("/auth/register", {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    username: username,
+                    password: password,
+                });
+                return navigate("/login");
+            } catch (e) {
+                setSubmitting(false);
+                if (e instanceof AxiosError) {
+                    setErrorMessage(e.response?.data);
+                }
+            }
         },
     });
 
     return (
         <AuthPage title="Register">
             <form onSubmit={formik.handleSubmit} className={styles.formContainer}>
+                {errorMessage && <p className={styles.errorBox}>{errorMessage}</p>}
                 <Box className={styles.inputHozizontalContainer}>
                     <CustomTextField
                         id="firstName"
@@ -107,7 +118,7 @@ const RegisterPage: React.FC = () => {
                         helperText={formik.touched.password && formik.errors.password}
                     />
                     <CustomTextField
-                        type="confirmPassword"
+                        type="password"
                         id="confirmPassword"
                         name="confirmPassword"
                         label="Confirm Password"

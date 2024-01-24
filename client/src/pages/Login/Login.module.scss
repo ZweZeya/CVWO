@@ -1,7 +1,10 @@
+@import "../../styles/index.scss";
+
 .formContainer {
     display: flex;
     flex-direction: column;
     gap: 0.7rem;
+    width: 45%;
 }
 
 .forgotPasswordText {

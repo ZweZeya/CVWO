@@ -4,12 +4,13 @@ import { login, logout } from "../../state/user/userSlice";
 import { update } from "../../state/tags/tagsSlice";
 import { useDispatch } from "react-redux";
 // import { useCurrentUser } from "../../hooks";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import React, { useEffect } from "react";
 
 const Page = ({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     useEffect(() => {
         const init = async () => {
@@ -19,8 +20,10 @@ const Page = ({ children, style }: { children: React.ReactNode; style?: React.CS
                 const tagsRes = await instance.get("/tags");
                 dispatch(update(tagsRes.data));
             } catch {
-                dispatch(logout());
-                navigate("/login");
+                if (pathname != "/register") {
+                    dispatch(logout());
+                    navigate("/login");
+                }
             }
         };
         init();

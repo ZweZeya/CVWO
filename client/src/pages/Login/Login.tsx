@@ -16,6 +16,7 @@ const loginValidationSchema = yup.object({
 
 const LoginPage: React.FC = () => {
     const [isSubmitting, setSubmitting] = useState<boolean>(false);
+    const [isError, setError] = useState<boolean>(false);
 
     const navigate = useNavigate();
 
@@ -26,15 +27,23 @@ const LoginPage: React.FC = () => {
         },
         validationSchema: loginValidationSchema,
         onSubmit: async (value) => {
-            setSubmitting(true);
-            await instance.post("/auth/login", value);
-            return navigate("/");
+            try {
+                setSubmitting(true);
+                setError(false);
+                await instance.post("/auth/login", value);
+                return navigate("/");
+            } catch {
+                setSubmitting(false);
+                setError(true);
+                formik.resetForm();
+            }
         },
     });
 
     return (
         <AuthPage title="Account Login">
             <form onSubmit={formik.handleSubmit} className={styles.formContainer}>
+                {isError && <p className={styles.errorBox}>username or password is incorrect</p>}
                 <CustomTextField
                     id="username"
                     name="username"
